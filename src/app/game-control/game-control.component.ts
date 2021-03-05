@@ -10,8 +10,8 @@ export class GameControlComponent implements OnInit {
 
   ref: any;
 
-  counter:number = 0; 
-  @Output() gameCreated = new EventEmitter<{ourCounterState:number}>()
+  counter: number = 0;
+  @Output() intervalEmitted = new EventEmitter<number>()
 
 
   constructor() { }
@@ -19,15 +19,16 @@ export class GameControlComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onStartGame(){
+  onStartGame() {
     this.ref = setInterval(() => {
-      this.counter+=1;
-      console.log(this.counter)
-    },1000);
+      // console.log(this.counter); 
+      this.intervalEmitted.emit(this.counter);
+      this.counter ++;
+    }, 1000);
   }
-  onEndGame(){
+  onEndGame() {
     clearInterval(this.ref);
-    this.counter=0;
+    // this.counter = 0;
 
   }
 

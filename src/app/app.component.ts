@@ -1,29 +1,22 @@
-import { Component, ViewChild, Input, SimpleChanges } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements ViewChild {
- descendants: boolean;
- emitDistinctChangesOnly: boolean;
- first: boolean;
- read: any;
- isViewQuery: boolean;
- selector: any;
- static?: boolean;
+export class AppComponent {
 
-  counter:number
+oddNumbers: number[] =[]
+evenNumbers: number[] =[]
 
-@Input() incoming:number;  
 
 constructor(){}
 
+onIntervalSeen(intervalEmitted:number){
+  intervalEmitted%2!=0 ? this.oddNumbers.push(intervalEmitted) : this.evenNumbers.push(intervalEmitted)
 
-ngOnChanges(changes: SimpleChanges) {
-  this.counter= this.incoming;
-  console.log(this.counter)
+  // console.log(intervalEmitted )
 }
 
 }
